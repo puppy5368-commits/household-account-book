@@ -23,6 +23,21 @@
     .fixed-break-body .fixed-item strong{font-size:13px!important;line-height:1.35!important;font-weight:700}
     .fixed-break-body .fixed-item>strong:last-child{font-size:13px!important;white-space:nowrap}
     .fixed-break-body .fixed-item p,.fixed-break-body .fixed-item span,.fixed-break-body .fixed-item small{font-size:11px!important;line-height:1.4!important}
+
+    .debt-mission-panel{margin-top:12px;padding:20px}
+    .debt-mission-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .debt-mission-kicker{display:block;font-size:13px;font-weight:800;color:var(--accent);margin-bottom:5px}
+    .debt-mission-head h2{margin:0 0 5px;font-size:24px;letter-spacing:-.5px}
+    .debt-mission-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .debt-mission-list{display:grid;gap:8px}
+    .debt-mission-item{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .debt-mission-active{border-width:2px}
+    .debt-rank{width:30px;height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:800;background:#f1f3f8}
+    .debt-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .debt-copy strong{font-size:14px}
+    .debt-copy span{font-size:11px;color:var(--muted)}
+    .debt-amount{font-size:14px;white-space:nowrap}
+
     @media(max-width:620px){
       .summary-grid-main{grid-template-columns:1fr 1fr}
       .summary-expand{grid-column:span 1}
@@ -35,6 +50,17 @@
       .fixed-break-body .fixed-item{padding:8px 0!important}
       .fixed-break-body .fixed-item strong,.fixed-break-body .fixed-item>strong:last-child{font-size:12px!important}
       .fixed-break-body .fixed-item p,.fixed-break-body .fixed-item span,.fixed-break-body .fixed-item small{font-size:10.5px!important}
+
+      .debt-mission-panel{padding:16px;margin-top:10px}
+      .debt-mission-head{gap:10px;margin-bottom:11px}
+      .debt-mission-head h2{font-size:20px}
+      .debt-mission-head p{font-size:11px}
+      .debt-mission-head>.pill{font-size:11px;padding:6px 8px}
+      .debt-mission-item{grid-template-columns:28px minmax(0,1fr);gap:9px;padding:11px 12px}
+      .debt-rank{width:26px;height:26px;font-size:12px}
+      .debt-copy strong{font-size:13px}
+      .debt-copy span{font-size:10.5px}
+      .debt-amount{grid-column:2;font-size:13px;margin-top:1px}
     }
   `;
   document.head.appendChild(style);

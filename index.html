@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>우리집 가계부</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="app-shell">
+<header class="topbar">
+<div><p class="eyebrow">우리집 재정 보드</p><h1>9월 가계부</h1><p class="sub">월급 → 자금배분 → 실제지출 → 남은 돈</p></div>
+<button id="resetBtn" class="ghost-btn">초기화</button>
+</header>
+<section class="summary-grid">
+<article class="summary-card"><span>이번 달 수입</span><strong id="incomeTotal">0원</strong></article>
+<article class="summary-card"><span>실제 지출</span><strong id="expenseTotal">0원</strong></article>
+<article class="summary-card"><span>계좌이동</span><strong id="transferTotal">0원</strong></article>
+<article class="summary-card highlight"><span>수입 - 실제지출</span><strong id="balanceTotal">0원</strong></article>
+</section>
+<section class="panel flow-panel">
+<div class="section-title-row"><div><h2>이번 달 돈 흐름</h2><p>계좌이동은 소비로 계산하지 않아요.</p></div></div>
+<div class="flow-row">
+<div class="flow-box"><span>월급</span><strong>5,889,900원</strong></div><div class="arrow">→</div>
+<div class="flow-box"><span>민정 7777</span><strong>2,700,000원</strong><small>생활비 + 고정비 준비</small></div><div class="arrow">→</div>
+<div class="flow-box"><span>민정 2115</span><strong>고정지출 통장</strong><small>아동수당 105,000원 입금</small></div>
+</div>
+<div class="flow-row second">
+<div class="flow-box"><span>남편 고정비 통장</span><strong>300,000원 배정</strong><small>현재 고정비 276,903원</small></div>
+<div class="flow-box"><span>월급통장 직접지출</span><strong>개인회생 2,044,000원</strong><small>십일조는 매달 변동</small></div>
+</div>
+</section>
+<section class="two-col">
+<article class="panel"><div class="section-title-row"><div><h2>고정지출</h2><p>매달 반복되는 항목</p></div><span class="pill" id="fixedTotal">0원</span></div><div id="fixedExpenses" class="fixed-list"></div></article>
+<article class="panel"><div class="section-title-row"><div><h2>카테고리별 실제지출</h2><p>계좌이동 제외</p></div></div><div id="categoryBars" class="category-bars"></div></article>
+</section>
+<section class="panel entry-panel">
+<div class="section-title-row"><div><h2>+ 지출 기록</h2><p>휴대폰에서 빠르게 입력하도록 만들었어요.</p></div></div>
+<form id="entryForm" class="entry-form">
+<label>구분<select id="type" required><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select></label>
+<label>날짜<input id="date" type="date" required /></label>
+<label>금액<input id="amount" type="number" min="0" step="1" placeholder="예: 9100" required /></label>
+<label>사용처 / 내용<input id="merchant" type="text" placeholder="예: 쿠팡 누룽지팝 4개" required /></label>
+<label>카테고리<select id="category"><option>식비/간식</option><option>외식/카페</option><option>생활용품</option><option>교육</option><option>보험</option><option>통신</option><option>차량</option><option>주거/공과금</option><option>교회/헌금</option><option>개인회생/채무</option><option>의료</option><option>쇼핑/미용</option><option>기타</option></select></label>
+<label>기록자<select id="person"><option>민정</option><option>남편</option></select></label>
+<label>결제/사용 통장<select id="account"><option>민정 7777</option><option>민정 2115</option><option>남편 고정비 통장</option><option>월급통장</option><option>카드/기타</option></select></label>
+<label class="full">메모<input id="memo" type="text" placeholder="선택사항" /></label>
+<label class="full receipt-label">📷 영수증 / 결제화면 첨부<input id="receipt" type="file" accept="image/*" capture="environment" /><small>1차 버전은 사진을 이 기기에 저장합니다.</small></label>
+<button class="primary-btn" type="submit">저장하기</button>
+</form>
+</section>
+<section class="panel">
+<div class="section-title-row"><div><h2>최근 기록</h2><p>최신 순으로 표시됩니다.</p></div><div class="filters"><select id="personFilter"><option value="all">전체</option><option value="민정">민정</option><option value="남편">남편</option></select><select id="typeFilter"><option value="all">전체구분</option><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select></div></div>
+<div id="transactions" class="transaction-list"></div>
+</section>
+<footer><p><strong>V1</strong> · 이 버전은 한 기기 저장용 프로토타입입니다.</p><p>부부 공동 실시간 사용은 다음 단계에서 온라인 DB를 연결하면 됩니다.</p></footer>
+</main>
+<dialog id="receiptDialog"><button id="closeDialog" class="dialog-close">닫기</button><img id="receiptPreview" alt="영수증 미리보기" /></dialog>
+<script src="app.js"></script>
+</body></html>

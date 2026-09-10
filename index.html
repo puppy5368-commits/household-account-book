@@ -8,115 +8,19 @@
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<section id="authScreen" class="auth-screen">
-  <div class="auth-card">
-    <p class="eyebrow">우리집 공동 가계부</p>
-    <h1>로그인</h1>
-    <p class="sub">민정·남편 두 사람만 같은 가계부를 함께 사용해요.</p>
-    <form id="loginForm" class="login-form">
-      <label>이메일<input id="loginEmail" type="email" autocomplete="email" required /></label>
-      <label>비밀번호<input id="loginPassword" type="password" autocomplete="current-password" required /></label>
-      <button class="primary-btn" type="submit">가계부 열기</button>
-    </form>
-    <p id="loginMessage" class="form-message"></p>
-  </div>
-</section>
-
+<section id="authScreen" class="auth-screen"><div class="auth-card"><p class="eyebrow">우리집 공동 가계부</p><h1>로그인</h1><p class="sub">민정·세훈 두 사람만 같은 가계부를 함께 사용해요.</p><form id="loginForm" class="login-form"><label>이메일<input id="loginEmail" type="email" autocomplete="email" required /></label><label>비밀번호<input id="loginPassword" type="password" autocomplete="current-password" required /></label><button class="primary-btn" type="submit">가계부 열기</button></form><p id="loginMessage" class="form-message"></p></div></section>
 <main id="app" class="app-shell hidden">
-<header class="topbar">
-  <div>
-    <p class="eyebrow">우리집 재정 보드 · 공동저장 V2</p>
-    <h1 id="monthTitle">9월 가계부</h1>
-    <p class="sub">가장 먼저 보는 숫자: 그래서 이번 달 얼마 남았어?</p>
-  </div>
-  <div class="user-actions">
-    <span id="currentUser" class="user-chip"></span>
-    <button id="logoutBtn" class="ghost-btn">로그아웃</button>
-  </div>
-</header>
-
-<section class="hero-card">
-  <div>
-    <span class="hero-label">💰 이번 달 남은 생활비</span>
-    <strong id="remainingMoney">계산 중…</strong>
-    <p id="remainingFormula">수입에서 이번 달 고정의무와 생활지출을 뺀 금액</p>
-  </div>
-  <div class="hero-side">
-    <span>아동수당 입금 후 예상</span>
-    <strong id="remainingAfterAllowance">-</strong>
-    <small>9월 24~25일 예정 · 105,000원</small>
-  </div>
-</section>
-
-<section class="progress-panel panel">
-  <div class="section-title-row">
-    <div><h2>생활비 사용 현황</h2><p id="livingProgressText">이번 달 사용 가능한 생활비를 기준으로 계산해요.</p></div>
-    <span class="pill" id="livingPercent">0%</span>
-  </div>
-  <div class="big-progress"><div id="livingProgressBar"></div></div>
-</section>
-
-<section class="summary-grid">
-  <article class="summary-card"><span>이번 달 수입</span><strong id="incomeTotal">0원</strong></article>
-  <article class="summary-card"><span>고정의무 예정</span><strong id="plannedFixedTotal">0원</strong></article>
-  <article class="summary-card"><span>생활지출</span><strong id="livingExpenseTotal">0원</strong></article>
-  <article class="summary-card"><span>계좌이동</span><strong id="transferTotal">0원</strong><small>소비에는 포함 안 함</small></article>
-</section>
-
+<header class="topbar"><div><p class="eyebrow">우리집 재정 보드 · 공동저장 V2</p><h1 id="monthTitle">9월 가계부</h1><p class="sub">가장 먼저 보는 숫자: 그래서 이번 달 얼마 남았어?</p></div><div class="user-actions"><span id="currentUser" class="user-chip"></span><button id="logoutBtn" class="ghost-btn">로그아웃</button></div></header>
+<section class="hero-card"><div><span class="hero-label">💰 이번 달 남은 생활비</span><strong id="remainingMoney">계산 중…</strong><p id="remainingFormula">수입에서 이번 달 고정의무와 생활지출을 뺀 금액</p></div><div class="hero-side"><span>아동수당 입금 후 예상</span><strong id="remainingAfterAllowance">-</strong><small>9월 24~25일 예정 · 105,000원</small></div></section>
+<section class="progress-panel panel"><div class="section-title-row"><div><h2>생활비 사용 현황</h2><p id="livingProgressText">이번 달 사용 가능한 생활비를 기준으로 계산해요.</p></div><span class="pill" id="livingPercent">0%</span></div><div class="big-progress"><div id="livingProgressBar"></div></div></section>
+<section class="summary-grid"><article class="summary-card"><span>이번 달 수입</span><strong id="incomeTotal">0원</strong></article><article class="summary-card"><span>고정의무 예정</span><strong id="plannedFixedTotal">0원</strong></article><article class="summary-card"><span>생활지출</span><strong id="livingExpenseTotal">0원</strong></article><article class="summary-card"><span>계좌이동</span><strong id="transferTotal">0원</strong><small>소비에는 포함 안 함</small></article></section>
 <section class="three-col">
-  <article class="panel compact-panel">
-    <div class="section-title-row"><div><h2>민정 고정비</h2><p>2115 + 희윤 용돈 적립</p></div><span class="pill" id="minFixedTotal">0원</span></div>
-    <div id="minFixed" class="fixed-list"></div>
-  </article>
-  <article class="panel compact-panel">
-    <div class="section-title-row"><div><h2>남편 고정비</h2><p>남편 고정비 통장</p></div><span class="pill" id="husbandFixedTotal">0원</span></div>
-    <div id="husbandFixed" class="fixed-list"></div>
-  </article>
-  <article class="panel compact-panel">
-    <div class="section-title-row"><div><h2>월급통장 의무</h2><p>월급날 바로 빠지는 돈</p></div><span class="pill" id="salaryFixedTotal">0원</span></div>
-    <div id="salaryFixed" class="fixed-list"></div>
-  </article>
+<details class="panel compact-panel fixed-collapsible"><summary><div><h2>민정 고정비</h2><p>2115 + 희윤 용돈 적립</p></div><div class="summary-right"><span class="pill" id="minFixedTotal">0원</span><span class="chevron">⌄</span></div></summary><div id="minFixed" class="fixed-list fixed-details"></div></details>
+<details class="panel compact-panel fixed-collapsible"><summary><div><h2>세훈 고정비</h2><p>세훈 고정비 통장</p></div><div class="summary-right"><span class="pill" id="husbandFixedTotal">0원</span><span class="chevron">⌄</span></div></summary><div id="husbandFixed" class="fixed-list fixed-details"></div></details>
+<article class="panel compact-panel"><div class="section-title-row"><div><h2>월급통장 의무</h2><p>월급날 바로 빠지는 돈</p></div><span class="pill" id="salaryFixedTotal">0원</span></div><div id="salaryFixed" class="fixed-list"></div></article>
 </section>
-
-<section class="two-col">
-  <article class="panel">
-    <div class="section-title-row"><div><h2>+ 기록하기</h2><p>저장하면 부부 화면에 같이 보여요.</p></div></div>
-    <form id="entryForm" class="entry-form">
-      <label>구분<select id="type" required><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select></label>
-      <label>날짜<input id="date" type="date" required /></label>
-      <label>금액<input id="amount" type="number" min="1" step="1" placeholder="예: 9100" required /></label>
-      <label class="span-2">사용처 / 내용<input id="merchant" type="text" placeholder="예: 마트 장보기" required /></label>
-      <label>카테고리<select id="category"><option>식비/간식</option><option>외식/카페</option><option>생활용품</option><option>자녀교육</option><option>보험</option><option>통신</option><option>차량</option><option>주거/공과금</option><option>교회/헌금</option><option>개인회생/채무</option><option>의료</option><option>쇼핑/미용</option><option>자녀용돈/적립</option><option>기타</option></select></label>
-      <label>사용자<select id="person"><option>민정</option><option>남편</option></select></label>
-      <label>결제/사용 통장<select id="account"><option>민정 7777</option><option>민정 2115</option><option>남편 고정비 통장</option><option>월급통장</option><option>카드/기타</option></select></label>
-      <label class="span-2">메모<input id="memo" type="text" placeholder="선택사항" /></label>
-      <div class="receipt-note span-2">📷 영수증 공동저장은 다음 단계에서 연결할게요. 지금은 지출 내용부터 부부 공동저장됩니다.</div>
-      <button id="saveBtn" class="primary-btn span-2" type="submit">저장하기</button>
-    </form>
-    <p id="entryMessage" class="form-message"></p>
-  </article>
-
-  <article class="panel">
-    <div class="section-title-row"><div><h2>카테고리별 생활지출</h2><p>고정의무·계좌이동은 제외</p></div></div>
-    <div id="categoryBars" class="category-bars"></div>
-  </article>
-</section>
-
-<section class="panel">
-  <div class="section-title-row">
-    <div><h2>최근 기록</h2><p>Supabase에 저장되어 두 사람에게 동일하게 보여요.</p></div>
-    <div class="filters">
-      <select id="personFilter"><option value="all">전체</option><option value="민정">민정</option><option value="남편">남편</option></select>
-      <select id="typeFilter"><option value="all">전체구분</option><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select>
-    </div>
-  </div>
-  <div id="transactions" class="transaction-list"><p class="sub">불러오는 중…</p></div>
-</section>
-
-<footer><p><strong>V2</strong> · Supabase 공동저장 · 가족 2인 로그인</p></footer>
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<section class="two-col"><article class="panel"><div class="section-title-row"><div><h2>+ 기록하기</h2><p>저장하면 부부 화면에 같이 보여요.</p></div></div><form id="entryForm" class="entry-form"><label>구분<select id="type" required><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select></label><label>날짜<input id="date" type="date" required /></label><label>금액<input id="amount" type="number" min="1" step="1" placeholder="예: 9100" required /></label><label class="span-2">사용처 / 내용<input id="merchant" type="text" placeholder="예: 마트 장보기" required /></label><label>카테고리<select id="category"><option>식비/간식</option><option>외식/카페</option><option>생활용품</option><option>자녀교육</option><option>보험</option><option>통신</option><option>차량</option><option>주거/공과금</option><option>교회/헌금</option><option>개인회생/채무</option><option>의료</option><option>쇼핑/미용</option><option>자녀용돈/적립</option><option>기타</option></select></label><label>사용자<select id="person"><option>민정</option><option>남편</option></select></label><label>결제/사용 통장<select id="account"><option>민정 7777</option><option>민정 2115</option><option>남편 고정비 통장</option><option>월급통장</option><option>카드/기타</option></select></label><label class="span-2">메모<input id="memo" type="text" placeholder="선택사항" /></label><div class="receipt-note span-2">📷 영수증 공동저장은 다음 단계에서 연결할게요. 지금은 지출 내용부터 부부 공동저장됩니다.</div><button id="saveBtn" class="primary-btn span-2" type="submit">저장하기</button></form><p id="entryMessage" class="form-message"></p></article><article class="panel"><div class="section-title-row"><div><h2>카테고리별 생활지출</h2><p>고정의무·계좌이동은 제외</p></div></div><div id="categoryBars" class="category-bars"></div></article></section>
+<section class="panel"><div class="section-title-row"><div><h2>최근 기록</h2><p>Supabase에 저장되어 두 사람에게 동일하게 보여요.</p></div><div class="filters"><select id="personFilter"><option value="all">전체</option><option value="민정">민정</option><option value="남편">남편</option></select><select id="typeFilter"><option value="all">전체구분</option><option value="expense">지출</option><option value="income">수입</option><option value="transfer">계좌이동</option></select></div></div><div id="transactions" class="transaction-list"><p class="sub">불러오는 중…</p></div></section>
+<footer><p><strong>V2</strong> · Supabase 공동저장 · 가족 2인 로그인</p></footer></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script>
+</body></html>

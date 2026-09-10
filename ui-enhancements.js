@@ -4,23 +4,31 @@
     .ui-hidden,.salary-obligation-panel{display:none!important}
     .summary-grid-main{grid-template-columns:repeat(3,1fr)}
     .summary-expand{padding:0;overflow:hidden}
-    .summary-expand summary{list-style:none;cursor:pointer;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent}
-    .summary-expand summary::-webkit-details-marker{display:none}
-    .summary-expand summary strong{display:block;margin-top:10px;font-size:24px;letter-spacing:-.5px}
+    .summary-expand>summary{list-style:none;cursor:pointer;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent}
+    .summary-expand>summary::-webkit-details-marker{display:none}
+    .summary-expand>summary strong{display:block;margin-top:10px;font-size:24px;letter-spacing:-.5px}
     .summary-arrow{font-size:22px;color:var(--muted);transition:transform .2s ease}
-    .summary-expand[open] .summary-arrow{transform:rotate(180deg)}
-    .all-fixed-breakdown{border-top:1px solid var(--line);padding:0 18px 14px;background:#fbfbfd}
-    .fixed-break-section{padding:14px 0 4px;border-bottom:1px solid var(--line)}
-    .fixed-break-section:last-child{border-bottom:0}
-    .fixed-break-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:4px}
-    .fixed-break-head span{font-weight:800;color:var(--accent);white-space:nowrap}
+    .summary-expand[open]>.summary-arrow,.summary-expand[open]>summary .summary-arrow{transform:rotate(180deg)}
+    .all-fixed-breakdown{border-top:1px solid var(--line);padding:10px 14px 14px;background:#fbfbfd;display:grid;gap:8px}
+    .fixed-break-details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    .fixed-break-details>summary{list-style:none;cursor:pointer;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;-webkit-tap-highlight-color:transparent}
+    .fixed-break-details>summary::-webkit-details-marker{display:none}
+    .fixed-break-summary-left{display:flex;align-items:center;gap:8px;min-width:0}
+    .fixed-break-summary-left strong{font-size:14px}
+    .fixed-break-amount{font-weight:800;color:var(--accent);white-space:nowrap;font-size:14px}
+    .fixed-break-chevron{color:var(--muted);transition:transform .2s ease;font-size:18px}
+    .fixed-break-details[open] .fixed-break-chevron{transform:rotate(180deg)}
+    .fixed-break-body{border-top:1px solid var(--line);padding:4px 14px 8px}
+    .fixed-break-body .fixed-item{padding:9px 0}
     @media(max-width:620px){
       .summary-grid-main{grid-template-columns:1fr 1fr}
       .summary-expand{grid-column:span 1}
-      .summary-expand summary{padding:15px}
-      .summary-expand summary strong{font-size:20px}
-      .all-fixed-breakdown{padding:0 15px 12px}
-      .fixed-break-head{font-size:14px}
+      .summary-expand>summary{padding:15px}
+      .summary-expand>summary strong{font-size:20px}
+      .all-fixed-breakdown{padding:9px 10px 11px;gap:7px}
+      .fixed-break-details>summary{padding:12px}
+      .fixed-break-summary-left strong,.fixed-break-amount{font-size:13px}
+      .fixed-break-body{padding:3px 12px 7px}
     }
   `;
   document.head.appendChild(style);
@@ -37,16 +45,19 @@
   if (!all || !min || !husband || !salary) return;
 
   const section = (title, total, html) => `
-    <section class="fixed-break-section">
-      <div class="fixed-break-head"><strong>${title}</strong><span>${total || ''}</span></div>
-      <div class="fixed-list">${html || '<p class="sub">내역 없음</p>'}</div>
-    </section>`;
+    <details class="fixed-break-details">
+      <summary>
+        <div class="fixed-break-summary-left"><strong>${title}</strong></div>
+        <div class="fixed-break-summary-left"><span class="fixed-break-amount">${total || ''}</span><span class="fixed-break-chevron">⌄</span></div>
+      </summary>
+      <div class="fixed-break-body fixed-list">${html || '<p class="sub">내역 없음</p>'}</div>
+    </details>`;
 
   const sync = () => {
     all.innerHTML =
       section('민정 고정비', minTotal?.textContent, min.innerHTML) +
       section('세훈 고정비', husbandTotal?.textContent, husband.innerHTML) +
-      section('월급통장 고정의무', salaryTotal?.textContent, salary.innerHTML);
+      section('고정의무', salaryTotal?.textContent, salary.innerHTML);
   };
 
   [min, husband, salary, minTotal, husbandTotal, salaryTotal].filter(Boolean).forEach(el => {

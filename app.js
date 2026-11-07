@@ -12,7 +12,7 @@ const DEFAULT_RECURRING = [
   {item_type:"expense",name:"삼성생명보험 · 희윤 실비",amount:44818,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"코웨이 정수기",amount:25900,category:"생활/렌탈",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"쿠팡와우 월회비",amount:7890,category:"생활/렌탈",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
-  {item_type:"expense",name:"ChatGPT Plus · 구글플레이",amount:29000,category:"생활/렌탈",person_name:"민정",account_name:"카드/기타",due_day:null,is_variable:false,memo:"2026년 9월부터 매월 구글플레이 정기결제"},
+  {item_type:"expense",name:"ChatGPT Plus · 구글플레이",amount:29000,category:"생활/렌탈",person_name:"민정",account_name:"민정 케이뱅크",due_day:null,is_variable:false,memo:"2026년 9월부터 매월 구글플레이 정기결제"},
   {item_type:"expense",name:"현대해상보험 · 민정 실비",amount:76630,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"DB손해보험 · 민정 운전자",amount:10290,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"DB손해보험 · 민정 치과",amount:27320,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},

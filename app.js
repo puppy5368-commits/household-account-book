@@ -12,6 +12,7 @@ const DEFAULT_RECURRING = [
   {item_type:"expense",name:"삼성생명보험 · 희윤 실비",amount:44818,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"코웨이 정수기",amount:25900,category:"생활/렌탈",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"쿠팡와우 월회비",amount:7890,category:"생활/렌탈",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
+  {item_type:"expense",name:"ChatGPT Plus · 구글플레이",amount:29000,category:"생활/렌탈",person_name:"민정",account_name:"카드/기타",due_day:null,is_variable:false,memo:"2026년 9월부터 매월 구글플레이 정기결제"},
   {item_type:"expense",name:"현대해상보험 · 민정 실비",amount:76630,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"DB손해보험 · 민정 운전자",amount:10290,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
   {item_type:"expense",name:"DB손해보험 · 민정 치과",amount:27320,category:"보험",person_name:"민정",account_name:"민정 2115",due_day:null,is_variable:false,memo:"자동이체"},
@@ -84,6 +85,7 @@ async function migrateSeptember2026(){
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="개인회생 1"));
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="개인회생 2"));
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="쿠팡와우 월회비"));
+  await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="ChatGPT Plus · 구글플레이"));
   const allowance=(recs||[]).find(x=>x.active&&(x.name==="희윤 용돈"||x.name==="희윤 용돈통장 · 카뱅1349"));
   if(allowance){const {error}=await db.from("recurring_items").update({name:"희윤 용돈",item_type:"expense",amount:30000,category:"자녀용돈/적립",person_name:"민정",account_name:"민정 7777",memo:"9월 지급완료 · 현금 15,000 + 계좌 15,000"}).eq("id",allowance.id);if(error)throw error;}else await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="희윤 용돈"));
 

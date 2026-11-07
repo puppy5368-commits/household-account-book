@@ -86,6 +86,7 @@ async function migrateSeptember2026(){
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="개인회생 2"));
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="쿠팡와우 월회비"));
   await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="ChatGPT Plus · 구글플레이"));
+  const {error:kbankErr}=await db.from("recurring_items").update({account_name:"민정 케이뱅크"}).eq("household_id",householdId).eq("name","ChatGPT Plus · 구글플레이").eq("account_name","카드/기타");if(kbankErr)throw kbankErr;
   const allowance=(recs||[]).find(x=>x.active&&(x.name==="희윤 용돈"||x.name==="희윤 용돈통장 · 카뱅1349"));
   if(allowance){const {error}=await db.from("recurring_items").update({name:"희윤 용돈",item_type:"expense",amount:30000,category:"자녀용돈/적립",person_name:"민정",account_name:"민정 7777",memo:"9월 지급완료 · 현금 15,000 + 계좌 15,000"}).eq("id",allowance.id);if(error)throw error;}else await ensureRecurring(DEFAULT_RECURRING.find(x=>x.name==="희윤 용돈"));
 
